@@ -25,5 +25,8 @@ class Program extends Model
         return $this->hasMany(Lot::class);
     }
 
-
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', Carbon::now());
+    }
 }

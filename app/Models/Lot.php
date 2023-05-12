@@ -23,4 +23,25 @@ class Lot extends Model
     {
         return $this->belongsTo(Program::class);
     }
+
+    public function getSurfaceFloorAttribute()
+    {
+        if (in_array($this->type, ['AC', 'CO', 'TE'])) {
+            return $this::TYPE[$this->type].' : '.$this->living_surface.'m²';
+        }
+
+        $floor = $this->floor;
+        if ((int) $this->floor == 1) {
+            $floor = '1er étage';
+        } elseif ((int) $this->floor > 1) {
+            $floor = $this->floor.'ème étage';
+        }
+
+        return $this::TYPE[$this->type].' : '.$this->living_surface.'m² - Etage : '.$floor;
+    }
+
+    public function theNewFunction()
+    {
+        //TODO make this work !
+    }
 }

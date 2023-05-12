@@ -24,4 +24,6 @@ class Program extends Model
     {
         return $this->hasMany(Lot::class);
     }
+
+
 }
